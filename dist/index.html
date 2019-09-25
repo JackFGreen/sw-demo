@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="manifest" href="/manifest.js">
+    <title>service-worker</title>
+  </head>
+  <body>
+    <div class="cont">default</div>
+    <script src="/main.1e43358e.js"></script>
+    <script>window.addEventListener('sw.update', function () {
+  console.log('sw.update');
+  var result = window.confirm('refresh');
+
+  if (result) {
+    navigator.serviceWorker.getRegistration().then(function (reg) {
+      console.log('getRegistration');
+      reg.waiting.postMessage('skipWaiting');
+    });
+  }
+});
+
+function emitUpdate() {
+  console.log('emitUpdate');
+  var event = document.createEvent('Event');
+  event.initEvent('sw.update', true, true);
+  window.dispatchEvent(event);
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register("/sw.js").then(function (registration) {
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+
+      if (registration.waiting) {
+        console.log('waiting');
+        emitUpdate();
+        return;
+      }
+
+      registration.onupdatefound = function () {
+        var installing = reg.installing;
+        console.log('onupdatefound');
+
+        installing.onstatechange = function () {
+          console.log('state', installing.state);
+          if (installing.state === 'installed' && navigator.serviceWorker.controller) emitUpdate();
+        };
+      };
+    }, function (err) {
+      console.log('ServiceWorker registration failed: ', err);
+    });
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+      console.log('controllerchange');
+      window.location.reload();
+    });
+  });
+}
+
+console.log('reigster-sw');</script>
+  </body>
+</html>
