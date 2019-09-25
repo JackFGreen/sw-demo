@@ -1,5 +1,5 @@
 const CACHE_NAME = 1
-const urlsToCache = ['/']
+const urlsToCache = ['/sw-demo/dist']
 // const reqExt = 'html,js,css,png'
 
 self.addEventListener('message', event => {

@@ -119,7 +119,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"sw.js":[function(require,module,exports) {
 var CACHE_NAME = 1;
-var urlsToCache = ['/']; // const reqExt = 'html,js,css,png'
+var urlsToCache = ['/sw-demo/dist']; // const reqExt = 'html,js,css,png'
 
 self.addEventListener('message', function (event) {
   console.log('skipWaiting');
@@ -189,7 +189,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61199" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65250" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
