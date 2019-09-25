@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="manifest" href="/manifest.js">
+    <link rel="manifest" href="/sw-demo/dist/manifest.js">
     <title>service-worker</title>
   </head>
   <body>
     <div class="cont">default</div>
-    <script src="/main.1e43358e.js"></script>
+    <script src="/sw-demo/dist/main.1e43358e.js"></script>
     <script>window.addEventListener('sw.update', function () {
   console.log('sw.update');
   var result = window.confirm('refresh');
@@ -31,7 +31,7 @@ function emitUpdate() {
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register("/sw.js").then(function (registration) {
+    navigator.serviceWorker.register("/sw-demo/dist/sw.js").then(function (registration) {
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
 
       if (registration.waiting) {
