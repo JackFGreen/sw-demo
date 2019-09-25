@@ -6,12 +6,12 @@
   "theme_color": "#202631",
   "icons": [
     {
-      "src": "/icons/96x96.png",
+      "src": "/sw-demo/dist/icons/96x96.png",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "/icons/144x144.png",
+      "src": "/sw-demo/dist/icons/144x144.png",
       "type": "image/png",
       "sizes": "144x144"
     }
